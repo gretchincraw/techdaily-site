@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Techdaily - Dashboard</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: white;
+    }
+    .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+    header { text-align: center; margin-bottom: 40px; }
+    .logo { max-width: 200px; margin-bottom: 20px; }
+    h1 { font-size: 2rem; margin-bottom: 10px; }
+    .user-info {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .avatar {
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+    }
+    .card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .card h2 { margin-bottom: 15px; font-size: 1.3rem; }
+    .btn {
+      background: #fff;
+      color: #764ba2;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 15px;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .status {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-left: 10px;
+    }
+    .status.success { background: #4ade80; color: #064e3b; }
+    .status.pending { background: #fbbf24; color: #78350f; }
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 15px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: #4ade80;
+      width: 0%;
+      transition: width 0.3s;
+    }
+    .hidden { display: none; }
+    .success-message {
+      background: #4ade80;
+      color: #064e3b;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="logo.png" alt="Techdaily" class="logo">
+      <h1>Dashboard</h1>
+    </header>
+
+    <div class="user-info">
+      <div class="avatar">👤</div>
+      <div>
+        <div style="font-weight: 600;">Connected as @techdaily_user</div>
+        <div style="opacity: 0.8; font-size: 0.9rem;">TikTok Account Linked ✓</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🎬 Generate Daily Tech News</h2>
+      <p>Create and post a new tech news video to your TikTok account automatically.</p>
+      <button class="btn" id="generateBtn" onclick="generateVideo()">Generate Video</button>
+      
+      <div id="progressSection" class="hidden">
+        <div style="margin-top: 15px;">
+          <span id="statusText">Fetching latest tech news...</span>
+          <span class="status pending" id="statusBadge">Processing</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressBar"></div>
+        </div>
+      </div>
+
+      <div id="successSection" class="hidden">
+        <div class="success-message">
+          ✅ Video successfully posted to TikTok!<br>
+          <a href="#" style="color: #064e3b; text-decoration: underline;">View on TikTok</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📊 Recent Posts</h2>
+      <div style="opacity: 0.9;">
+        <div style="padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
+          📱 "iPhone 16: New Features Revealed" <span class="status success">Posted</span>
+        </div>
+        <div style="padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
+          🤖 "AI Breakthrough: GPT-5 Rumors" <span class="status success">Posted</span>
+        </div>
+        <div style="padding: 10px 0;">
+          🚀 "SpaceX Starship Launch Success" <span class="status success">Posted</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="index.html" style="color: white; opacity: 0.8;">← Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    function generateVideo() {
+      const btn = document.getElementById('generateBtn');
+      const progressSection = document.getElementById('progressSection');
+      const successSection = document.getElementById('successSection');
+      const progressBar = document.getElementById('progressBar');
+      const statusText = document.getElementById('statusText');
+      
+      btn.disabled = true;
+      btn.textContent = 'Generating...';
+      progressSection.classList.remove('hidden');
+      
+      // Simulate progress
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += 10;
+        progressBar.style.width = progress + '%';
+        
+        if (progress === 30) {
+          statusText.textContent = 'Creating video content...';
+        } else if (progress === 60) {
+          statusText.textContent = 'Uploading to TikTok...';
+        } else if (progress === 90) {
+          statusText.textContent = 'Finalizing post...';
+        }
+        
+        if (progress >= 100) {
+          clearInterval(interval);
+          progressSection.classList.add('hidden');
+          successSection.classList.remove('hidden');
+          btn.textContent = 'Generate Another Video';
+          btn.disabled = false;
+        }
+      }, 300);
+    }
+  </script>
+</body>
+</html>
