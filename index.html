@@ -1,21 +1,197 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="google-site-verification" content="7EtjsaFv8TSpl4yis0aon9-oUaob3as3S_OIijlVV8M" />
-  <title>Techdaily</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="7EtjsaFv8TSpl4yis0aon9-oUaob3as3S_OIijlVV8M">
+  <title>Techdaily - Daily Tech News</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      padding: 40px 0;
+      text-align: center;
+    }
+    
+    .logo {
+      max-width: 300px;
+      height: auto;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+    }
+    
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 0;
+    }
+    
+    .hero {
+      text-align: center;
+      color: white;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      opacity: 0.95;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+    
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+    
+    .feature {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+    
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+    
+    .feature h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+    
+    .feature p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+    
+    footer {
+      background: rgba(0,0,0,0.2);
+      padding: 30px 0;
+      text-align: center;
+      color: white;
+    }
+    
+    footer a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+      margin: 0 15px;
+    }
+    
+    footer a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+    
+    .footer-links {
+      margin-bottom: 15px;
+    }
+    
+    .copyright {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .logo {
+        max-width: 200px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Techdaily</h1>
-  <p>Daily tech news videos on TikTok.</p>
+  <header>
+    <div class="container">
+      <img src="logo.png" alt="Techdaily Logo" class="logo">
+    </div>
+  </header>
   
-  <hr>
+  <main>
+    <div class="container">
+      <div class="hero">
+        <h1>Your Daily Tech News</h1>
+        <p>Stay updated with the latest technology trends, innovations, and breakthroughs. Delivered automatically to your TikTok feed every day.</p>
+        
+        <div class="features">
+          <div class="feature">
+            <div class="feature-icon">📱</div>
+            <h3>Daily Updates</h3>
+            <p>Fresh tech news delivered to your feed every single day</p>
+          </div>
+          
+          <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <h3>Instant Delivery</h3>
+            <p>Automated posting ensures you never miss important news</p>
+          </div>
+          
+          <div class="feature">
+            <div class="feature-icon">🎯</div>
+            <h3>Curated Content</h3>
+            <p>Hand-picked stories that matter in the tech world</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
   <footer>
-    <p>
-      <a href="tos.html">Terms of Service</a> | 
-      <a href="privacy.html">Privacy Policy</a>
-    </p>
-    <p>&copy; 2026 Techdaily. All rights reserved.</p>
+    <div class="container">
+      <div class="footer-links">
+        <a href="tos.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+      <div class="copyright">
+        © 2026 Techdaily. All rights reserved.
+      </div>
+    </div>
   </footer>
 </body>
 </html>
